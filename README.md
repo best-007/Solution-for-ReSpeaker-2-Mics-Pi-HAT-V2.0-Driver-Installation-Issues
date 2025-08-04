@@ -1,6 +1,6 @@
 # ReSpeaker 2-Mics Pi HAT V2.0 驱动安装问题解决办法
 
-[[English](README_en.md)] [[中文](README_zh.md)]
+[[English](README_en.md)] [[中文](README.md)]
 
 之所以写这个教程,是因为折腾了了好久才解决,而且相当多的地方提供的解决方案都没有用,最后还是在官网上找到的,真是灯下黑.
 
