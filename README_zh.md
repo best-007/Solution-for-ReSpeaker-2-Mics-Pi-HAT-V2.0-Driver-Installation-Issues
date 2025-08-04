@@ -6,7 +6,7 @@
 
 下面先说正确解决方案,来源是[官网提供的V2.0驱动配置方法](https://wiki.seeedstudio.com/respeaker_2_mics_pi_hat_raspberry_v2/)
 
-能查到的大部分教程可能都是针对V1.0或者其他产品,所以对于V2.0无法使用,原因可能是 ReSpeaker 2-Mics Pi HAT V2.0 WM8960芯片 改换为 TLV320AIC3104 导致大部分驱动不可用,而且相当多的驱动也是针对旧版系统.
+能查到的大部分教程可能都是针对V1.0或者其他产品,所以对于V2.0无法使用,原因可能是 ReSpeaker 2-Mics Pi HAT V2.0 WM8960芯片 改换为 TLV320AIC3104 导致大部分驱动不可用,而且相当多的驱动也是针对旧版系统内核.
 
 1. **将 ReSpeaker 2-Mics Pi HAT 连接到 Raspberry Pi**
 将ReSpeaker 2-Mics Pi HAT 安装在 Raspberry Pi 上，确保在堆叠 ReSpeaker 2-Mics Pi HAT 时引脚正确对齐.(尝试相当多的方案后我甚至怀疑是硬件问题,用万用表测引脚都正常,其实还是驱动安装的问题)
@@ -24,15 +24,18 @@ sudo dtoverlay respeaker-2mic-v2_0-overlay.dtbo
 sudo cp respeaker-2mic-v2_0-overlay.dtbo /boot/firmware/overlays
 ```
 >如果raw.githubusercontent.com访问超时,修改sudo nano /etc/hosts,查询IP并添加以下:
->185.199.108.133 raw.githubusercontent.com
->185.199.109.133 raw.githubusercontent.com
->185.199.110.133 raw.githubusercontent.com
+><br>185.199.108.133 raw.githubusercontent.com<br>
+>185.199.109.133 raw.githubusercontent.com<br>
+>185.199.110.133 raw.githubusercontent.com<br>
 >185.199.111.133 raw.githubusercontent.com
 
 **或者**
 实在是无法下载就直接从项目里拷贝
 ```
-
+curl https://raw.githubusercontent.com/Seeed-Studio/seeed-linux-dtoverlays/refs/heads/master/overlays/rpi/respeaker-2mic-v2_0-overlay.dts -o respeaker-2mic-v2_0-overlay.dts
+dtc -I dts respeaker-2mic-v2_0-overlay.dts -o respeaker-2mic-v2_0-overlay.dtbo
+sudo dtoverlay respeaker-2mic-v2_0-overlay.dtbo
+sudo cp respeaker-2mic-v2_0-overlay.dtbo /boot/firmware/overlays
 ```
 
 
@@ -62,12 +65,12 @@ arecord -l
 ### 1.常规的官网解决方案
 比如CSDN或者[github上的官方库](https://github.com/respeaker/seeed-voicecard)
 ```
-git clone https://github.com/respeaker/seeed-voicecardGit克隆https://github.com/respeaker/seeed-voicecard
+git clone https://github.com/respeaker/seeed-voicecard
 cd seeed-voicecard
 sudo ./install.sh
 sudo reboot
 ```
-或者`sudo ./install.sh   sudo。/ install.sh`加上参数什么的,后面都会报kernel version的问题,而且能下载的内核包最新也就6.1,这时候就不用去找新的内核包了,没有用.
+或者`sudo ./install.sh`加上参数什么的,后面都会报kernel version的问题,而且能下载的内核包最新也就6.1,这时候就不用去找新的内核包了,没有用.
 
 ### 2.为了兼容内核版本的解决方案
 应该是有两个方案,一个是可以[兼容各版本内核](https://github.com/HinTak/seeed-voicecard/tree/v6.12)的驱动安装,另一个是在官方论坛找到的YouTube介绍的项目包含的驱动安装,[Wyoming Satellite](https://github.com/rhasspy/wyoming-satellite/tree/master/docs),当然结果是都不行,即使成功安装也是无法识别设备,可能的原因是驱动都是针对WM8960芯片,而V2.0的板子已经改成TLV320AIC3104了.
