@@ -55,9 +55,11 @@ sudo reboot
 apaly -l
 arecord -l
 ```
+
 输出结果如下,看到seeed2mic就行了
-![alt text](image.png)
-![alt text](image-1.png)
+
+![alt text](./images/image.png)
+![alt text](./images/image-1.png)
 
 
 
