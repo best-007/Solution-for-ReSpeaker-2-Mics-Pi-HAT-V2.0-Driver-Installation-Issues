@@ -30,9 +30,9 @@ sudo cp respeaker-2mic-v2_0-overlay.dtbo /boot/firmware/overlays
 >185.199.111.133 raw.githubusercontent.com
 
 **或者**
-实在是无法下载就直接从项目里拷贝
+实在是无法下载就直接从项目里拷贝,dts和dtbo文件就是.
 ```
-curl https://raw.githubusercontent.com/Seeed-Studio/seeed-linux-dtoverlays/refs/heads/master/overlays/rpi/respeaker-2mic-v2_0-overlay.dts -o respeaker-2mic-v2_0-overlay.dts
+curl https://github.com/best-007/Solution-for-ReSpeaker-2-Mics-Pi-HAT-V2.0-Driver-Installation-Issues/respeaker-2mic-v2_0-overlay.dts -o respeaker-2mic-v2_0-overlay.dts
 dtc -I dts respeaker-2mic-v2_0-overlay.dts -o respeaker-2mic-v2_0-overlay.dtbo
 sudo dtoverlay respeaker-2mic-v2_0-overlay.dtbo
 sudo cp respeaker-2mic-v2_0-overlay.dtbo /boot/firmware/overlays
